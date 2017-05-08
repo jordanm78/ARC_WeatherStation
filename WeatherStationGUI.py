@@ -40,8 +40,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
   #Initialize the user interface
   def initUI(self):  
     self.parent.title("Weather Station")
-    self.style = ttk.Style()
-    self.style.theme_use("default")
+    self.configure(bg = "white")
     self.pack(fill=BOTH, expand=1)
 
     #---Define some variables
@@ -63,7 +62,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
     #---Wind Speed Label
 
     # Create and configure a wind speed label
-    windSpeedLabel = Label(self, text = "Wind Speed (MPH)", font = ("Helvetica", 24))
+    windSpeedLabel = Label(self, text = "Wind Speed (MPH)", bg = "white", fg = "blue", font = ("Helvetica", 24))
 
     #Place the label in the window
     windSpeedLabel.pack(fill = X, padx = 5, pady = 5)  #Make the entry stretch to fill the window in the X direction, with 5 pixels of padding on the tops and sides.
@@ -73,7 +72,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
     #---Wind Speed Indicator
 
     # Create and configure a wind speed indicator
-    windSpeedIndicator = Label(self, textvariable = self.windSpeedString, font = ("Helvetica", 24))
+    windSpeedIndicator = Label(self, textvariable = self.windSpeedString, bg = "white", fg = "blue", font = ("Helvetica", 24))
 
     #Place the label in the window
     windSpeedIndicator.pack(fill = X, padx = 5, pady = 5)  #Make the entry stretch to fill the window in the X direction, with 5 pixels of padding on the tops and sides.
@@ -88,7 +87,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
 
 
     #Place the button in the window
-    quitButton.pack(fill = X, padx = 5, pady = 5)  #Make the button stretch to fill the window in the X direction, with 5 pixels of padding on the tops and sides.
+    quitButton.pack(padx = 5, pady = 5)  #Make the button stretch to fill the window in the X direction, with 5 pixels of padding on the tops and sides.
 
 
 
@@ -187,7 +186,6 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
 def main():
   
   root = Tk()
-  #root.geometry("250x250+300+300")
   app = WeatherStation(root)
   root.mainloop()  
 
