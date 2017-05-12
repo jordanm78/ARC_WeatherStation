@@ -15,7 +15,11 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
     self.parent = parent
 
     #  Set up logging
-    logging.basicConfig(filename='WeatherStationLog.log',level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)-8s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S',
+                    filename='WeatherStationLog.log',
+                    filemode='w')
 
     #  Set up the GPIO
     GPIO.setmode(GPIO.BCM)
@@ -53,7 +57,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
 
     self.previousRisingEdgeTime=time.time()
 
-    self.previousVoltage=0
+    self.previousVoltage=1
 
 
 
@@ -130,8 +134,13 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
                      params = self.weatherData)
 
     #Catch and handle any connection error.
-    except ConnectionError as error:
+    except requests.exceptions.ConnectionError as error:
       logging.exception("The following connection error occurred while trying to connect to the weather underground website: %s"
+                        % str(error))
+
+    #Catch and handle any other error.
+    except requests.exceptions.RequestException as error:
+      logging.exception("The following unknown error occurred while trying to connect to the weather underground website: %s"
                         % str(error))
       
     else:
