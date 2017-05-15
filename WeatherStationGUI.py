@@ -15,7 +15,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
     self.parent = parent
 
     #  Set up logging
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=logging.WARNING, #Levels are DEBUG, INFO, WARNING, ERROR, CRITICAL
                     format='%(asctime)s %(levelname)-8s %(message)s',
                     datefmt='%a, %d %b %Y %H:%M:%S',
                     filename='WeatherStationLog.log',
