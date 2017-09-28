@@ -23,7 +23,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
 
     #  Set up the GPIO
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(26, GPIO.IN) 
+    GPIO.setup(2, GPIO.IN) 
 
 
     #  Set up the Serial Port
@@ -180,7 +180,7 @@ class WeatherStation(Frame):  #Define a new class that inherits from the Frame c
    
   #This method checks for rising edge
   def checkRisingEdge(self):
-    presentVoltage=GPIO.input(26)
+    presentVoltage=GPIO.input(2)
     #print("Present Voltage: ", presentVoltage, ".  Previous voltage: ", self.previousVoltage)
     if presentVoltage == 1 and self.previousVoltage == 0:
       risingEdgeFound=True
